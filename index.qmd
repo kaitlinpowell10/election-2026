@@ -84,62 +84,27 @@ cat(
 )
 ```
 
-::: {.chart-card}
-### Statewide candidate vote share
+::: {.section-heading}
+<p class="eyebrow">Explore California</p>
 
-Candidate percentages are recalculated from reported county vote totals.
+## Governor's race across all 58 counties
 
+<p class="section-intro">The map is the main view: county color shows the leading party, and stronger shades mean a wider margin. Select any county for vote totals, percentages, and its reporting time.</p>
+:::
+
+::: {.map-frame .home-map}
 ```{r}
-#| label: statewide-vote-share
+#| label: homepage-california-map
 #| echo: false
-#| fig-width: 9
-#| fig-height: 4.2
-#| out-width: 100%
-#| fig-alt: "Horizontal bars compare statewide Governor candidate vote percentages."
 #| message: false
 #| warning: false
 
-library(ggplot2)
-
-ggplot(
-  state_totals,
-  aes(
-    x = reorder(candidate, vote_percentage),
-    y = vote_percentage,
-    fill = party
-  )
-) +
-  geom_col(width = 0.58, show.legend = FALSE) +
-  geom_text(
-    aes(label = sprintf("%.1f%%", vote_percentage)),
-    hjust = -0.15,
-    color = "#172D3D",
-    fontface = "bold",
-    size = 4
-  ) +
-  coord_flip(clip = "off") +
-  scale_fill_manual(
-    values = c(Democratic = "#39738E", Republican = "#B7525C"),
-    na.value = "#8C7654"
-  ) +
-  scale_y_continuous(
-    limits = c(0, max(state_totals$vote_percentage) * 1.16),
-    breaks = seq(0, 100, by = 20),
-    labels = \(x) paste0(x, "%")
-  ) +
-  labs(x = NULL, y = "Share of reported Governor candidate votes") +
-  theme_minimal(base_size = 12) +
-  theme(
-    text = element_text(color = "#172D3D"),
-    panel.grid.minor = element_blank(),
-    panel.grid.major.y = element_blank(),
-    axis.text.y = element_text(face = "bold"),
-    plot.margin = margin(8, 24, 8, 8)
-  )
+source("data/ca_2026_county_map.R")
+build_county_map(election, height = "660px")
 ```
-
-<p class="plot-caption">Source: California Secretary of State Governor results API. Results remain unofficial.</p>
 :::
+
+<p class="small-note">Source: California Secretary of State county Governor results API · Boundaries: U.S. Census Bureau 2025 · <a href="map.html">Open the dedicated map page</a>.</p>
 
 ::: {.dashboard-link-grid}
 ::: {.dashboard-link-card}
