@@ -1,0 +1,60 @@
+scope,county,source_url,retrieved_at_utc,reporting_timestamp,reporting
+statewide,Statewide,https://api.sos.ca.gov/returns/governor,2026-11-13T16:25:27Z,2026-11-12T20:46:00-08:00,"100% (23,860 of 23,860) precincts reporting"
+county,Alameda,https://api.sos.ca.gov/returns/governor/county/alameda,2026-11-13T16:25:28Z,2026-11-09T17:03:00-08:00,100% (627 of 627) precincts reporting
+county,Alpine,https://api.sos.ca.gov/returns/governor/county/alpine,2026-11-13T16:25:29Z,2026-11-03T21:33:00-08:00,100% (5 of 5) precincts reporting
+county,Amador,https://api.sos.ca.gov/returns/governor/county/amador,2026-11-13T16:25:29Z,2026-11-10T13:57:00-08:00,100% (47 of 47) precincts reporting
+county,Butte,https://api.sos.ca.gov/returns/governor/county/butte,2026-11-13T16:25:30Z,2026-11-10T14:53:00-08:00,100% (137 of 137) precincts reporting
+county,Calaveras,https://api.sos.ca.gov/returns/governor/county/calaveras,2026-11-13T16:25:31Z,2026-11-10T16:45:00-08:00,100% (25 of 25) precincts reporting
+county,Colusa,https://api.sos.ca.gov/returns/governor/county/colusa,2026-11-13T16:25:31Z,2026-11-12T15:14:00-08:00,100% (19 of 19) precincts reporting
+county,Contra Costa,https://api.sos.ca.gov/returns/governor/county/contra-costa,2026-11-13T16:25:32Z,2026-11-10T15:33:00-08:00,100% (951 of 951) precincts reporting
+county,Del Norte,https://api.sos.ca.gov/returns/governor/county/del-norte,2026-11-13T16:25:33Z,2026-11-10T16:05:00-08:00,100% (19 of 19) precincts reporting
+county,El Dorado,https://api.sos.ca.gov/returns/governor/county/el-dorado,2026-11-13T16:25:33Z,2026-11-12T15:13:00-08:00,100% (179 of 179) precincts reporting
+county,Fresno,https://api.sos.ca.gov/returns/governor/county/fresno,2026-11-13T16:25:34Z,2026-11-10T15:43:00-08:00,100% (396 of 396) precincts reporting
+county,Glenn,https://api.sos.ca.gov/returns/governor/county/glenn,2026-11-13T16:25:35Z,2026-11-10T11:11:00-08:00,100% (114 of 114) precincts reporting
+county,Humboldt,https://api.sos.ca.gov/returns/governor/county/humboldt,2026-11-13T16:25:36Z,2026-11-10T17:43:00-08:00,100% (120 of 120) precincts reporting
+county,Imperial,https://api.sos.ca.gov/returns/governor/county/imperial,2026-11-13T16:25:36Z,2026-11-10T17:18:00-08:00,100% (279 of 279) precincts reporting
+county,Inyo,https://api.sos.ca.gov/returns/governor/county/inyo,2026-11-13T16:25:37Z,2026-11-10T15:18:00-08:00,100% (16 of 16) precincts reporting
+county,Kern,https://api.sos.ca.gov/returns/governor/county/kern,2026-11-13T16:25:38Z,2026-11-12T16:15:00-08:00,100% (898 of 898) precincts reporting
+county,Kings,https://api.sos.ca.gov/returns/governor/county/kings,2026-11-13T16:25:38Z,2026-11-12T16:49:00-08:00,100% (70 of 70) precincts reporting
+county,Lake,https://api.sos.ca.gov/returns/governor/county/lake,2026-11-13T16:25:40Z,2026-11-12T17:26:00-08:00,100% (37 of 37) precincts reporting
+county,Lassen,https://api.sos.ca.gov/returns/governor/county/lassen,2026-11-13T16:25:41Z,2026-11-09T19:18:00-08:00,100% (52 of 52) precincts reporting
+county,Los Angeles,https://api.sos.ca.gov/returns/governor/county/los-angeles,2026-11-13T16:25:41Z,2026-11-10T17:03:00-08:00,"100% (2,853 of 2,853) precincts reporting"
+county,Madera,https://api.sos.ca.gov/returns/governor/county/madera,2026-11-13T16:25:42Z,2026-11-12T16:13:00-08:00,100% (90 of 90) precincts reporting
+county,Marin,https://api.sos.ca.gov/returns/governor/county/marin,2026-11-13T16:25:43Z,2026-11-11T15:19:00-08:00,100% (128 of 128) precincts reporting
+county,Mariposa,https://api.sos.ca.gov/returns/governor/county/mariposa,2026-11-13T16:25:43Z,2026-11-12T14:01:00-08:00,100% (27 of 27) precincts reporting
+county,Mendocino,https://api.sos.ca.gov/returns/governor/county/mendocino,2026-11-13T16:25:44Z,2026-11-12T15:34:00-08:00,100% (258 of 258) precincts reporting
+county,Merced,https://api.sos.ca.gov/returns/governor/county/merced,2026-11-13T16:25:45Z,2026-11-10T16:15:00-08:00,100% (770 of 770) precincts reporting
+county,Modoc,https://api.sos.ca.gov/returns/governor/county/modoc,2026-11-13T16:25:45Z,2026-11-10T17:01:00-08:00,100% (21 of 21) precincts reporting
+county,Mono,https://api.sos.ca.gov/returns/governor/county/mono,2026-11-13T16:25:46Z,2026-11-10T16:11:00-08:00,100% (12 of 12) precincts reporting
+county,Monterey,https://api.sos.ca.gov/returns/governor/county/monterey,2026-11-13T16:25:47Z,2026-11-10T19:45:00-08:00,100% (208 of 208) precincts reporting
+county,Napa,https://api.sos.ca.gov/returns/governor/county/napa,2026-11-13T16:25:47Z,2026-11-12T16:45:00-08:00,100% (147 of 147) precincts reporting
+county,Nevada,https://api.sos.ca.gov/returns/governor/county/nevada,2026-11-13T16:25:47Z,2026-11-10T16:01:00-08:00,100% (105 of 105) precincts reporting
+county,Orange,https://api.sos.ca.gov/returns/governor/county/orange,2026-11-13T16:25:48Z,2026-11-12T17:07:00-08:00,"100% (2,377 of 2,377) precincts reporting"
+county,Placer,https://api.sos.ca.gov/returns/governor/county/placer,2026-11-13T16:25:49Z,2026-11-10T16:11:00-08:00,100% (325 of 325) precincts reporting
+county,Plumas,https://api.sos.ca.gov/returns/governor/county/plumas,2026-11-13T16:25:50Z,2026-11-10T15:47:00-08:00,100% (29 of 29) precincts reporting
+county,Riverside,https://api.sos.ca.gov/returns/governor/county/riverside,2026-11-13T16:25:50Z,2026-11-12T17:57:00-08:00,"100% (1,206 of 1,206) precincts reporting"
+county,Sacramento,https://api.sos.ca.gov/returns/governor/county/sacramento,2026-11-13T16:25:51Z,2026-11-10T15:51:00-08:00,100% (719 of 719) precincts reporting
+county,San Benito,https://api.sos.ca.gov/returns/governor/county/san-benito,2026-11-13T16:25:52Z,2026-11-12T07:53:00-08:00,100% (67 of 67) precincts reporting
+county,San Bernardino,https://api.sos.ca.gov/returns/governor/county/san-bernardino,2026-11-13T16:25:53Z,2026-11-12T17:23:00-08:00,"100% (2,066 of 2,066) precincts reporting"
+county,San Diego,https://api.sos.ca.gov/returns/governor/county/san-diego,2026-11-13T16:25:53Z,2026-11-12T17:57:00-08:00,"100% (2,994 of 2,994) precincts reporting"
+county,San Francisco,https://api.sos.ca.gov/returns/governor/county/san-francisco,2026-11-13T16:25:54Z,2026-11-10T15:51:00-08:00,100% (514 of 514) precincts reporting
+county,San Joaquin,https://api.sos.ca.gov/returns/governor/county/san-joaquin,2026-11-13T16:25:54Z,2026-11-11T18:51:00-08:00,100% (335 of 335) precincts reporting
+county,San Luis Obispo,https://api.sos.ca.gov/returns/governor/county/san-luis-obispo,2026-11-13T16:25:54Z,2026-11-12T16:25:00-08:00,100% (153 of 153) precincts reporting
+county,San Mateo,https://api.sos.ca.gov/returns/governor/county/san-mateo,2026-11-13T16:25:55Z,2026-11-12T09:29:00-08:00,100% (333 of 333) precincts reporting
+county,Santa Barbara,https://api.sos.ca.gov/returns/governor/county/santa-barbara,2026-11-13T16:25:56Z,2026-11-12T12:37:00-08:00,100% (235 of 235) precincts reporting
+county,Santa Clara,https://api.sos.ca.gov/returns/governor/county/santa-clara,2026-11-13T16:25:57Z,2026-11-12T20:46:00-08:00,100% (708 of 708) precincts reporting
+county,Santa Cruz,https://api.sos.ca.gov/returns/governor/county/santa-cruz,2026-11-13T16:25:57Z,2026-11-10T16:45:00-08:00,100% (201 of 201) precincts reporting
+county,Shasta,https://api.sos.ca.gov/returns/governor/county/shasta,2026-11-13T16:25:58Z,2026-11-12T12:54:00-08:00,100% (68 of 68) precincts reporting
+county,Sierra,https://api.sos.ca.gov/returns/governor/county/sierra,2026-11-13T16:25:59Z,2026-11-12T13:47:00-08:00,100% (19 of 19) precincts reporting
+county,Siskiyou,https://api.sos.ca.gov/returns/governor/county/siskiyou,2026-11-13T16:25:59Z,2026-11-12T10:50:00-08:00,100% (62 of 62) precincts reporting
+county,Solano,https://api.sos.ca.gov/returns/governor/county/solano,2026-11-13T16:26:05Z,2026-11-12T16:49:00-08:00,100% (196 of 196) precincts reporting
+county,Sonoma,https://api.sos.ca.gov/returns/governor/county/sonoma,2026-11-13T16:26:05Z,2026-11-11T14:38:00-08:00,100% (403 of 403) precincts reporting
+county,Stanislaus,https://api.sos.ca.gov/returns/governor/county/stanislaus,2026-11-13T16:26:06Z,2026-11-12T18:47:00-08:00,100% (206 of 206) precincts reporting
+county,Sutter,https://api.sos.ca.gov/returns/governor/county/sutter,2026-11-13T16:26:07Z,2026-11-12T16:43:00-08:00,100% (25 of 25) precincts reporting
+county,Tehama,https://api.sos.ca.gov/returns/governor/county/tehama,2026-11-13T16:26:07Z,2026-11-12T13:19:00-08:00,100% (38 of 38) precincts reporting
+county,Trinity,https://api.sos.ca.gov/returns/governor/county/trinity,2026-11-13T16:26:07Z,2026-11-12T16:04:00-08:00,100% (16 of 16) precincts reporting
+county,Tulare,https://api.sos.ca.gov/returns/governor/county/tulare,2026-11-13T16:26:08Z,2026-11-12T18:39:00-08:00,100% (388 of 388) precincts reporting
+county,Tuolumne,https://api.sos.ca.gov/returns/governor/county/tuolumne,2026-11-13T16:26:09Z,2026-11-12T17:04:00-08:00,100% (47 of 47) precincts reporting
+county,Ventura,https://api.sos.ca.gov/returns/governor/county/ventura,2026-11-13T16:26:10Z,2026-11-12T15:49:00-08:00,"100% (1,433 of 1,433) precincts reporting"
+county,Yolo,https://api.sos.ca.gov/returns/governor/county/yolo,2026-11-13T16:26:10Z,2026-11-10T16:43:00-08:00,100% (64 of 64) precincts reporting
+county,Yuba,https://api.sos.ca.gov/returns/governor/county/yuba,2026-11-13T16:26:11Z,2026-11-07T16:52:00-08:00,100% (23 of 23) precincts reporting

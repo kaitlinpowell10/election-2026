@@ -1,0 +1,244 @@
+---
+title: "Election Analysis"
+page-layout: full
+---
+
+<p class="eyebrow">The numbers behind the map</p>
+
+# A closer look at the county results
+
+These comparisons use the same unofficial county snapshot as the map. Margins are the difference between the top two candidates’ calculated county vote percentages.
+
+```{r}
+#| label: analysis-data
+#| echo: false
+#| message: false
+#| warning: false
+
+library(dplyr)
+library(readr)
+
+election <- read_csv(
+  "data/clean/ca_2026_county_results.csv",
+  col_types = cols(reporting_timestamp = col_character()),
+  show_col_types = FALSE
+)
+county_summary <- election |>
+  arrange(FIPS, desc(votes)) |>
+  group_by(county, FIPS) |>
+  summarise(
+    total_votes = sum(votes),
+    tied = n() > 1L && votes[[1]] == votes[[2]],
+    winner = if (tied) "Tie" else candidate[[1]],
+    winner_party = if (tied) "Unresolved" else party[[1]],
+    winner_pct = if (tied) NA_real_ else vote_percentage[[1]],
+    margin_pp = if (tied || n() < 2L) NA_real_ else
+      vote_percentage[[1]] - vote_percentage[[2]],
+    .groups = "drop"
+  ) |>
+  mutate(absolute_margin_pp = abs(margin_pp))
+
+if (nrow(county_summary) != 58L) {
+  stop("Analysis requires one validated summary row for each of the 58 counties.")
+}
+
+party_colors <- c(
+  Democratic = "#39738E",
+  Republican = "#B7525C",
+  Unresolved = "#87949B"
+)
+other_parties <- setdiff(unique(county_summary$winner_party), names(party_colors))
+if (length(other_parties) > 0L) {
+  party_colors <- c(
+    party_colors,
+    stats::setNames(rep("#8C7654", length(other_parties)), other_parties)
+  )
+}
+
+theme_dashboard <- function() {
+  theme_minimal(base_size = 12) +
+    theme(
+      text = element_text(color = "#172D3D"),
+      plot.title = element_text(face = "bold", size = 14, margin = margin(b = 6)),
+      plot.subtitle = element_text(color = "#6D7A83", size = 10),
+      panel.grid.minor = element_blank(),
+      panel.grid.major.y = element_blank(),
+      axis.title = element_text(color = "#415364", size = 10),
+      axis.text = element_text(color = "#415364", size = 9),
+      legend.position = "bottom",
+      legend.title = element_blank(),
+      plot.margin = margin(10, 22, 10, 10)
+    )
+}
+```
+
+::: {.chart-grid}
+::: {.chart-card}
+### The closest counties
+
+The ten smallest gaps between the top two candidates, measured in percentage points.
+
+```{r}
+#| label: closest-counties
+#| echo: false
+#| fig-width: 8.5
+#| fig-height: 5.8
+#| out-width: 100%
+#| fig-alt: "Ten counties with the smallest Governor race margins, colored by the leading party."
+#| message: false
+#| warning: false
+
+library(ggplot2)
+
+closest_counties <- county_summary |>
+  filter(!is.na(absolute_margin_pp)) |>
+  slice_min(absolute_margin_pp, n = 10, with_ties = FALSE) |>
+  mutate(county = reorder(county, absolute_margin_pp))
+
+ggplot(
+  closest_counties,
+  aes(x = county, y = absolute_margin_pp, fill = winner_party)
+) +
+  geom_col(width = 0.72, show.legend = FALSE) +
+  geom_text(
+    aes(label = sprintf("%.2f pp", absolute_margin_pp)),
+    hjust = -0.15,
+    size = 3.2,
+    color = "#172D3D"
+  ) +
+  coord_flip(clip = "off") +
+  scale_fill_manual(values = party_colors) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.18))) +
+  labs(x = NULL, y = "Victory margin (percentage points)") +
+  theme_dashboard()
+```
+
+<p class="plot-caption">A smaller gap means a closer county result. Colors show the leading candidate’s party.</p>
+:::
+
+::: {.chart-card}
+### The widest county margins
+
+The ten largest gaps between the leading candidate and runner-up.
+
+```{r}
+#| label: widest-margins
+#| echo: false
+#| fig-width: 8.5
+#| fig-height: 5.8
+#| out-width: 100%
+#| fig-alt: "Ten counties with the largest Governor race margins, colored by the leading party."
+#| message: false
+#| warning: false
+
+widest_counties <- county_summary |>
+  filter(!is.na(absolute_margin_pp)) |>
+  slice_max(absolute_margin_pp, n = 10, with_ties = FALSE) |>
+  mutate(county = reorder(county, absolute_margin_pp))
+
+ggplot(
+  widest_counties,
+  aes(x = county, y = absolute_margin_pp, fill = winner_party)
+) +
+  geom_col(width = 0.72, show.legend = FALSE) +
+  geom_text(
+    aes(label = sprintf("%.1f pp", absolute_margin_pp)),
+    hjust = -0.15,
+    size = 3.2,
+    color = "#172D3D"
+  ) +
+  coord_flip(clip = "off") +
+  scale_fill_manual(values = party_colors) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.18))) +
+  labs(x = NULL, y = "Victory margin (percentage points)") +
+  theme_dashboard()
+```
+
+<p class="plot-caption">Margin size is independent of county population; it compares candidate vote shares.</p>
+:::
+:::
+
+::: {.chart-card .chart-card-full}
+### Candidate vote totals by county
+
+Each bar shows reported Governor votes in a county, split by candidate party. Counties are ordered by total votes.
+
+```{r}
+#| label: county-vote-totals
+#| echo: false
+#| fig-width: 10
+#| fig-height: 13
+#| out-width: 100%
+#| fig-alt: "Stacked bars compare Democratic and Republican Governor candidate vote totals across all 58 counties."
+#| message: false
+#| warning: false
+
+county_order <- county_summary |>
+  arrange(total_votes) |>
+  pull(county)
+
+ggplot(
+  election |>
+    mutate(county = factor(county, levels = county_order)),
+  aes(x = county, y = votes, fill = party)
+) +
+  geom_col(width = 0.78) +
+  coord_flip() +
+  scale_fill_manual(values = party_colors) +
+  scale_y_continuous(
+    labels = scales::label_number(scale = 1e-6, suffix = "M", accuracy = 0.1),
+    expand = expansion(mult = c(0, 0.03))
+  ) +
+  labs(x = NULL, y = "Reported candidate votes", fill = "Party") +
+  theme_dashboard() +
+  theme(
+    axis.text.y = element_text(size = 7.5),
+    legend.position = "top",
+    panel.grid.major.y = element_blank()
+  )
+```
+
+<p class="plot-caption">The statewide total is the sum of candidate votes in this Governor race; it is not a measure of all ballots cast.</p>
+:::
+
+::: {.chart-card .chart-card-full}
+### County vote volume and winning margin
+
+Each point represents one county. The horizontal axis is total reported Governor candidate votes; the vertical axis is the winning margin in percentage points.
+
+```{r}
+#| label: county-votes-margin
+#| echo: false
+#| fig-width: 9.5
+#| fig-height: 5.8
+#| out-width: 100%
+#| fig-alt: "Scatter plot of county Governor candidate vote totals against the winning percentage-point margin."
+#| message: false
+#| warning: false
+
+ggplot(
+  county_summary,
+  aes(x = total_votes, y = absolute_margin_pp, color = winner_party)
+) +
+  geom_point(size = 3, alpha = 0.86) +
+  scale_color_manual(values = party_colors, name = "Leading party") +
+  scale_x_continuous(
+    labels = scales::label_number(scale = 1e-6, suffix = "M", accuracy = 0.1),
+    expand = expansion(mult = c(0.03, 0.08))
+  ) +
+  scale_y_continuous(
+    labels = \(x) paste0(round(x, 0), " pp"),
+    expand = expansion(mult = c(0.04, 0.1))
+  ) +
+  labs(
+    x = "Reported Governor candidate votes",
+    y = "Winning margin (percentage points)"
+  ) +
+  theme_dashboard() +
+  theme(legend.position = "bottom")
+```
+
+<p class="plot-caption">Vote volume and margin are separate measures: a county’s total votes do not determine how close its result is.</p>
+:::
+
+<p class="source-note">Source: California Secretary of State Governor county API endpoints. Snapshot retrieved November 13, 2026; county results remain unofficial.</p>

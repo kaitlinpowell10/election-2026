@@ -1,0 +1,31 @@
+project:
+  type: website
+
+website:
+  title: "California Election 2026"
+  description: "Official county-level results for the November 3, 2026 California Governor's race."
+  page-footer:
+    left: "California Election 2026 · Unofficial results"
+    right: "Data snapshot retrieved November 13, 2026"
+  navbar:
+    background: "#ffffff"
+    foreground: "#172d3d"
+    collapse: true
+    left:
+      - href: index.qmd
+        text: Home
+      - href: map.qmd
+        text: Interactive Map
+      - href: county-explorer.qmd
+        text: County Explorer
+      - href: analysis.qmd
+        text: Election Analysis
+      - href: about.qmd
+        text: About the Data
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+    smooth-scroll: true

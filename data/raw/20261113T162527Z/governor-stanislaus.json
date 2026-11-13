@@ -1,0 +1,44 @@
+[
+  {
+    "raceTitle": "Governor - Stanislaus County Results",
+    "Reporting": "100% (206 of 206) precincts reporting",
+    "ReportingTime": "November 12, 2026, 6:47 p.m.",
+    "candidates": [
+      {
+        "Name": "Xavier Becerra",
+        "Party": "Dem",
+        "Votes": "82,466",
+        "Percent": "53.3",
+        "incumbent": false
+      },
+      {
+        "Name": "Steve Hilton",
+        "Party": "Rep",
+        "Votes": "72,278",
+        "Percent": "46.7",
+        "incumbent": false
+      }
+    ]
+  },
+  {
+    "raceTitle": "Governor - Statewide Results",
+    "Reporting": "100% (23,860 of 23,860) precincts reporting",
+    "ReportingTime": "November 12, 2026, 8:46 p.m.",
+    "candidates": [
+      {
+        "Name": "Xavier Becerra",
+        "Party": "Dem",
+        "Votes": "8,320,439",
+        "Percent": "65.6",
+        "incumbent": false
+      },
+      {
+        "Name": "Steve Hilton",
+        "Party": "Rep",
+        "Votes": "4,363,438",
+        "Percent": "34.4",
+        "incumbent": false
+      }
+    ]
+  }
+]

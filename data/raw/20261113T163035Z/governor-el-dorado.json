@@ -1,0 +1,44 @@
+[
+  {
+    "raceTitle": "Governor - El Dorado County Results",
+    "Reporting": "100% (179 of 179) precincts reporting",
+    "ReportingTime": "November 12, 2026, 3:13 p.m.",
+    "candidates": [
+      {
+        "Name": "Xavier Becerra",
+        "Party": "Dem",
+        "Votes": "41,336",
+        "Percent": "43.6",
+        "incumbent": false
+      },
+      {
+        "Name": "Steve Hilton",
+        "Party": "Rep",
+        "Votes": "53,408",
+        "Percent": "56.4",
+        "incumbent": false
+      }
+    ]
+  },
+  {
+    "raceTitle": "Governor - Statewide Results",
+    "Reporting": "100% (23,860 of 23,860) precincts reporting",
+    "ReportingTime": "November 12, 2026, 8:46 p.m.",
+    "candidates": [
+      {
+        "Name": "Xavier Becerra",
+        "Party": "Dem",
+        "Votes": "8,320,439",
+        "Percent": "65.6",
+        "incumbent": false
+      },
+      {
+        "Name": "Steve Hilton",
+        "Party": "Rep",
+        "Votes": "4,363,438",
+        "Percent": "34.4",
+        "incumbent": false
+      }
+    ]
+  }
+]

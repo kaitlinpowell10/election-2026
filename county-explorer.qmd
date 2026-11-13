@@ -1,0 +1,63 @@
+---
+title: "County Explorer"
+page-layout: full
+---
+
+<p class="eyebrow">58 counties · candidate-by-candidate results</p>
+
+# Find a county
+
+Search by county name to see reported Governor votes, candidate percentages, and the county’s reporting time.
+
+<section class="panel county-explorer-panel">
+  <label for="county-search"><strong>Search California counties</strong></label>
+  <input
+    class="county-search"
+    id="county-search"
+    type="search"
+    list="county-options"
+    autocomplete="off"
+    placeholder="Start typing a county name"
+    aria-describedby="county-search-status"
+  >
+  <datalist id="county-options"></datalist>
+  <p class="county-search-status" id="county-search-status" role="status" aria-live="polite"></p>
+  <div id="county-results"></div>
+  <a class="btn btn-outline-primary hero-button" href="index.html">Return to statewide view</a>
+</section>
+
+```{r}
+#| label: county-explorer-data
+#| echo: false
+#| results: asis
+#| message: false
+#| warning: false
+
+library(readr)
+library(dplyr)
+library(jsonlite)
+
+county_data <- read_csv(
+  "data/clean/ca_2026_county_results.csv",
+  col_types = cols(reporting_timestamp = col_character()),
+  show_col_types = FALSE
+) |>
+  select(county, FIPS, candidate, party, votes, vote_percentage, reporting_timestamp)
+
+county_json <- toJSON(
+  county_data,
+  dataframe = "rows",
+  auto_unbox = TRUE,
+  na = "null"
+)
+cat(
+  "<script id='county-results-data' type='application/json'>",
+  as.character(county_json),
+  "</script>",
+  sep = "\n"
+)
+```
+
+<script src="county-explorer.js" defer></script>
+
+<p class="source-note">Source: California Secretary of State county Governor results API. County-level reporting timestamps are shown in Pacific time; results are unofficial.</p>

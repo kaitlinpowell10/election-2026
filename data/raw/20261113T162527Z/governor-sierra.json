@@ -1,0 +1,44 @@
+[
+  {
+    "raceTitle": "Governor - Sierra County Results",
+    "Reporting": "100% (19 of 19) precincts reporting",
+    "ReportingTime": "November 12, 2026, 1:47 p.m.",
+    "candidates": [
+      {
+        "Name": "Xavier Becerra",
+        "Party": "Dem",
+        "Votes": "578",
+        "Percent": "38.1",
+        "incumbent": false
+      },
+      {
+        "Name": "Steve Hilton",
+        "Party": "Rep",
+        "Votes": "940",
+        "Percent": "61.9",
+        "incumbent": false
+      }
+    ]
+  },
+  {
+    "raceTitle": "Governor - Statewide Results",
+    "Reporting": "100% (23,860 of 23,860) precincts reporting",
+    "ReportingTime": "November 12, 2026, 8:46 p.m.",
+    "candidates": [
+      {
+        "Name": "Xavier Becerra",
+        "Party": "Dem",
+        "Votes": "8,320,439",
+        "Percent": "65.6",
+        "incumbent": false
+      },
+      {
+        "Name": "Steve Hilton",
+        "Party": "Rep",
+        "Votes": "4,363,438",
+        "Percent": "34.4",
+        "incumbent": false
+      }
+    ]
+  }
+]

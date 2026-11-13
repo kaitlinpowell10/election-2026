@@ -1,0 +1,40 @@
+---
+title: "About the Data"
+---
+
+<p class="eyebrow">Sources · methods · limitations</p>
+
+# What these numbers show
+
+This dashboard presents county-level results for the California Governor’s race in the **November 3, 2026 General Election**. The latest archived API snapshot was retrieved on **November 13, 2026**. Results are **unofficial**: the Secretary of State’s election page says counties must complete final official results by December 3 and the state will certify results on December 11.
+
+::: {.data-status}
+Every county endpoint in this snapshot reports 100% of its precincts. That is a precinct-reporting measure, not a certification; ballots and canvass work may still be outstanding.
+:::
+
+## Official sources
+
+<ul class="data-source-list">
+  <li><a href="https://api.sos.ca.gov/returns/governor">California Secretary of State Governor statewide results API</a></li>
+  <li><a href="https://api.sos.ca.gov/returns/governor/county/lake">Documented county endpoint example (Lake County)</a>; the same endpoint pattern is used for all 58 counties.</li>
+  <li><a href="https://cms.cdn.sos.ca.gov/media/3-api-documentation-v3.pdf">Secretary of State results API documentation</a></li>
+  <li><a href="https://www.sos.ca.gov/elections/upcoming-elections/general-election-november-3-2026">November 3, 2026 General Election and certification schedule</a></li>
+  <li><a href="https://www2.census.gov/geo/tiger/GENZ2025/shp/cb_2025_us_county_20m.zip">U.S. Census Bureau 2025 county cartographic boundaries (20m)</a></li>
+</ul>
+
+The API identifies a Governor race and supplies reporting timestamps but does not include an election ID. The November 2026 timestamps and the live Governor endpoint were checked against the Secretary of State’s page for the November 3, 2026 election. County reporting timestamps differ because the county returns were updated at different times.
+
+## Method
+
+- Original API responses are archived by retrieval time under `data/raw/`; each snapshot includes a manifest of source URLs and report timestamps.
+- The reproducible R pipeline is [`data/fetch_ca_2026_county_results.R`](data/fetch_ca_2026_county_results.R). Its canonical output is [`data/clean/ca_2026_county_results.csv`](data/clean/ca_2026_county_results.csv).
+- County names are normalized to the 58 California county names and joined to Census five-digit county FIPS codes. The map uses FIPS rather than approximate name matching.
+- API candidate percentages are rounded to one decimal place. Dashboard percentages are recalculated from reported candidate votes within each county; recalculated values were checked against the API percentages.
+- Each candidate appears once per county. County candidate vote totals sum to the statewide API totals in the archived snapshot.
+- County boundaries use the Census Bureau’s 2025 Cartographic Boundary files (20m), derived from TIGER/Line, filtered to California and joined on FIPS.
+
+## Limitations
+
+These are a snapshot of unofficial returns, not certified results. Reporting timestamps are county-specific; the statewide API timestamp should not be read as the update time for every county. Percentages describe the reported Governor candidate votes in each county, not turnout or the share of all ballots. County geometry is for geographic comparison and does not encode population or land area in the vote shading.
+
+The API response does not itself expose an election identifier. The source URL, response files, retrieval timestamps, county reporting fields, validation steps, and election-date cross-check are retained so the dataset can be audited and refreshed.

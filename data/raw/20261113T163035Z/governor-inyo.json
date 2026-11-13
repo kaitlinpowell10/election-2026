@@ -1,0 +1,44 @@
+[
+  {
+    "raceTitle": "Governor - Inyo County Results",
+    "Reporting": "100% (16 of 16) precincts reporting",
+    "ReportingTime": "November 10, 2026, 3:18 p.m.",
+    "candidates": [
+      {
+        "Name": "Xavier Becerra",
+        "Party": "Dem",
+        "Votes": "3,966",
+        "Percent": "52.8",
+        "incumbent": false
+      },
+      {
+        "Name": "Steve Hilton",
+        "Party": "Rep",
+        "Votes": "3,549",
+        "Percent": "47.2",
+        "incumbent": false
+      }
+    ]
+  },
+  {
+    "raceTitle": "Governor - Statewide Results",
+    "Reporting": "100% (23,860 of 23,860) precincts reporting",
+    "ReportingTime": "November 12, 2026, 8:46 p.m.",
+    "candidates": [
+      {
+        "Name": "Xavier Becerra",
+        "Party": "Dem",
+        "Votes": "8,320,439",
+        "Percent": "65.6",
+        "incumbent": false
+      },
+      {
+        "Name": "Steve Hilton",
+        "Party": "Rep",
+        "Votes": "4,363,438",
+        "Percent": "34.4",
+        "incumbent": false
+      }
+    ]
+  }
+]

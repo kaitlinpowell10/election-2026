@@ -1,0 +1,170 @@
+---
+title: "California Election 2026"
+page-layout: full
+---
+
+:::: {.hero}
+::: {.hero-copy}
+<p class="eyebrow">California · General election · November 3, 2026</p>
+
+# California, county<br>by county.
+
+<p class="hero-deck">A clear, data-led view of the 2026 California Governor’s race, with official county results and the context behind every number.</p>
+
+<p class="status-line"><span class="status-dot"></span> Unofficial results · API reporting through November 12, 2026</p>
+
+::: {.hero-actions}
+[Explore the map](map.qmd){.btn .btn-primary .hero-button}
+[Browse county results](county-explorer.qmd){.btn .btn-outline-primary .hero-button}
+:::
+:::
+
+::: {.hero-aside aria-hidden="true"}
+<p class="hero-aside-label">THE GOLDEN STATE</p>
+<div class="hero-aside-rule"></div>
+<p class="hero-aside-count">58</p>
+<p class="hero-aside-caption">counties<br>one statewide race</p>
+:::
+::::
+
+:::: {.intro-band}
+::: {.intro-heading}
+<p class="eyebrow">The statewide picture</p>
+
+## Results, with the county story in view.
+:::
+
+::: {.intro-copy}
+Explore the statewide count, compare local margins, and see how each county reported. Figures come from the California Secretary of State’s results API; the county canvass and state certification are still pending.
+:::
+::::
+
+```{r}
+#| label: statewide-statistics
+#| echo: false
+#| results: asis
+#| message: false
+#| warning: false
+
+library(dplyr)
+library(readr)
+library(htmltools)
+
+election <- read_csv(
+  "data/clean/ca_2026_county_results.csv",
+  col_types = cols(reporting_timestamp = col_character()),
+  show_col_types = FALSE
+)
+state_totals <- election |>
+  group_by(candidate, party) |>
+  summarise(votes = sum(votes), .groups = "drop") |>
+  mutate(vote_percentage = 100 * votes / sum(votes)) |>
+  arrange(desc(votes))
+leading_candidate <- state_totals[1, ]
+statewide_margin <- leading_candidate$vote_percentage -
+  state_totals$vote_percentage[2]
+total_votes <- sum(state_totals$votes)
+
+cat(
+  "<div class='stat-grid'>",
+  "<div class='stat-card'><span class='stat-label'>Governor votes reported</span>",
+  "<strong class='stat-value'>", format(total_votes, big.mark = ","),
+  "</strong><span class='stat-footnote'>Candidate votes in the statewide count</span></div>",
+  "<div class='stat-card'><span class='stat-label'>Statewide leader</span>",
+  "<strong class='stat-value'>", htmlEscape(leading_candidate$candidate),
+  "</strong><span class='stat-footnote'>", htmlEscape(leading_candidate$party),
+  " · ", sprintf("%.1f%%", leading_candidate$vote_percentage), "</span></div>",
+  "<div class='stat-card'><span class='stat-label'>Statewide margin</span>",
+  "<strong class='stat-value'>", sprintf("%.1f pp", statewide_margin),
+  "</strong><span class='stat-footnote'>Between the top two candidates</span></div>",
+  "<div class='stat-card'><span class='stat-label'>Counties with results</span>",
+  "<strong class='stat-value'>", dplyr::n_distinct(election$county),
+  " of 58</strong><span class='stat-footnote'>All county endpoints reported 100% of precincts</span></div>",
+  "</div>"
+)
+```
+
+::: {.chart-card}
+### Statewide candidate vote share
+
+Candidate percentages are recalculated from reported county vote totals.
+
+```{r}
+#| label: statewide-vote-share
+#| echo: false
+#| fig-width: 9
+#| fig-height: 4.2
+#| out-width: 100%
+#| fig-alt: "Horizontal bars compare statewide Governor candidate vote percentages."
+#| message: false
+#| warning: false
+
+library(ggplot2)
+
+ggplot(
+  state_totals,
+  aes(
+    x = reorder(candidate, vote_percentage),
+    y = vote_percentage,
+    fill = party
+  )
+) +
+  geom_col(width = 0.58, show.legend = FALSE) +
+  geom_text(
+    aes(label = sprintf("%.1f%%", vote_percentage)),
+    hjust = -0.15,
+    color = "#172D3D",
+    fontface = "bold",
+    size = 4
+  ) +
+  coord_flip(clip = "off") +
+  scale_fill_manual(
+    values = c(Democratic = "#39738E", Republican = "#B7525C"),
+    na.value = "#8C7654"
+  ) +
+  scale_y_continuous(
+    limits = c(0, max(state_totals$vote_percentage) * 1.16),
+    breaks = seq(0, 100, by = 20),
+    labels = \(x) paste0(x, "%")
+  ) +
+  labs(x = NULL, y = "Share of reported Governor candidate votes") +
+  theme_minimal(base_size = 12) +
+  theme(
+    text = element_text(color = "#172D3D"),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank(),
+    axis.text.y = element_text(face = "bold"),
+    plot.margin = margin(8, 24, 8, 8)
+  )
+```
+
+<p class="plot-caption">Source: California Secretary of State Governor results API. Results remain unofficial.</p>
+:::
+
+::: {.dashboard-link-grid}
+::: {.dashboard-link-card}
+### Read the map
+
+See the leading candidate and margin in every California county.
+
+[Open interactive map →](map.qmd)
+:::
+
+::: {.dashboard-link-card}
+### Explore a county
+
+Search all 58 counties for candidate totals, vote share, and reporting time.
+
+[Open county explorer →](county-explorer.qmd)
+:::
+
+::: {.dashboard-link-card}
+### Understand the results
+
+Compare statewide vote share, close counties, and county-level margins.
+
+[View election analysis →](analysis.qmd)
+:::
+:::
+
+<div class="source-note">Data: California Secretary of State · November 2026 API snapshot · Results are unofficial.</div>
